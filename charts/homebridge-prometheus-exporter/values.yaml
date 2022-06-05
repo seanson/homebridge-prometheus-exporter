@@ -32,8 +32,8 @@ livenessProbe:
 
 image:
   repository: ghcr.io/seanson/homebridge-prometheus-exporter
-  tag: latest
   pullPolicy: Always
+  # tag: latest ## Override if specific tag needed, otherwise defaults to chart version
 
 service:
   enabled: true
