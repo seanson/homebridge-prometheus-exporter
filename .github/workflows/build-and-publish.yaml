@@ -68,6 +68,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - uses: fregante/setup-git-user@v1
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.1.0
+        uses: helm/chart-releaser-action@v1.4.0
         env:
           CR_TOKEN: "${{ secrets.RELEASE_TOKEN }}"
