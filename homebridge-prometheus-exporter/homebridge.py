@@ -1,4 +1,3 @@
-from os import access
 import requests
 
 from datetime import datetime

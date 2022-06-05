@@ -1,5 +1,4 @@
 import os
-import requests
 import sys
 import logging
 
@@ -7,7 +6,6 @@ from flask import Flask
 from flask_apscheduler import APScheduler
 from prometheus_client import Gauge
 from prometheus_flask_exporter import PrometheusMetrics
-from pyowm import OWM
 
 from homebridge import HomeBridge
 
@@ -58,7 +56,6 @@ scheduler.start()
 def fetch_accessories():
     logger.info("Fetching accessories data from %s", Config.URL)
     results = homebridge.get_accessories()
-    from pprint import pprint
 
     for result in results:
         result_type = result["type"]
