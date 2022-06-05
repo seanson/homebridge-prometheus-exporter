@@ -9,7 +9,7 @@ $ helm repo add homebridge-prometheus-exporter https://seanson.github.io/homebri
 $ helm install homebridge-prometheus-exporter/homebridge-prometheus-exporter
 ```
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square)
+![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square)
 
 ## Values
 
@@ -21,7 +21,6 @@ $ helm install homebridge-prometheus-exporter/homebridge-prometheus-exporter
 | homebridge.url | string | `""` | URL of the target HomeBridge API instace to hit |
 | image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"ghcr.io/seanson/homebridge-prometheus-exporter"` |  |
-| image.tag | string | `"latest"` |  |
 | livenessProbe.failureThreshold | int | `10` |  |
 | livenessProbe.httpGet.path | string | `"/metrics"` |  |
 | livenessProbe.httpGet.port | int | `5000` |  |
