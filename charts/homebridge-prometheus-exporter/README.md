@@ -9,13 +9,16 @@ $ helm repo add homebridge-prometheus-exporter https://seanson.github.io/homebri
 $ helm install homebridge-prometheus-exporter/homebridge-prometheus-exporter
 ```
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square)
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| homebridge.credentials | object | `{"password":"","username":""}` | Username and password for HomeBridge API authentication |
+| homebridge.sealedCredentials | object | `{"password":"","username":""}` | Optional sealed secret for credentials, can be set if you run the SealedSecrets controller  |
+| homebridge.url | string | `""` | URL of the target HomeBridge API instace to hit |
 | image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"ghcr.io/seanson/homebridge-prometheus-exporter"` |  |
 | image.tag | string | `"latest"` |  |
