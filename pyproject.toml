@@ -3,6 +3,9 @@ name = "homebridge-prometheus-exporter"
 version = "0.1.0"
 description = ""
 authors = []
+packages = [
+    { include = "homebridge-prometheus-exporter" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
