@@ -1,0 +1,11 @@
+apiVersion: v1
+description: Homebridge Prometheus Metrics Exporter
+engine: gotpl
+home: https://github.com/seanson/homebridge-prometheus-exporter
+maintainers:
+- email: seandavidjohnson@gmail.com
+  name: seanson
+name: homebridge-prometheus-exporter
+sources:
+- https://github.com/seanson/homebridge-prometheus-exporter
+version: 0.1.0

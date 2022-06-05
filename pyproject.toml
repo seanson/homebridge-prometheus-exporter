@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "homebridge-prometheus-exporter"
+version = "0.1.0"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.7"
+Flask = "^2.0.2"
+beautifulsoup4 = "^4.10.0"
+requests = "^2.26.0"
+python-dateutil = "^2.8.2"
+Flask-APScheduler = "^1.12.2"
+prometheus-flask-exporter = "^0.18.5"
+tzlocal = "<3.0"
+gunicorn = "^20.1.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.10b0"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
