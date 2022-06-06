@@ -2,6 +2,20 @@ apiVersion: v1
 entries:
   homebridge-prometheus-exporter:
   - apiVersion: v1
+    created: "2022-06-06T02:38:40.009525979Z"
+    description: Homebridge Prometheus Metrics Exporter
+    digest: 308a73f5288f0471a8b28ec6315723f7664a8a8941383d5e75067f0a5c9eba65
+    home: https://github.com/seanson/homebridge-prometheus-exporter
+    maintainers:
+    - email: seandavidjohnson@gmail.com
+      name: seanson
+    name: homebridge-prometheus-exporter
+    sources:
+    - https://github.com/seanson/homebridge-prometheus-exporter
+    urls:
+    - https://github.com/seanson/homebridge-prometheus-exporter/releases/download/homebridge-prometheus-exporter-0.1.10/homebridge-prometheus-exporter-0.1.10.tgz
+    version: 0.1.10
+  - apiVersion: v1
     created: "2022-06-06T01:38:46.745470858Z"
     description: Homebridge Prometheus Metrics Exporter
     digest: 3f942bbbb8974ab5a2361a0cf1cd000cb710669ea9fd5d9dd80d7e676a1fe6a8
@@ -85,4 +99,4 @@ entries:
     urls:
     - https://github.com/seanson/homebridge-prometheus-exporter/releases/download/homebridge-prometheus-exporter-0.1.1/homebridge-prometheus-exporter-0.1.1.tgz
     version: 0.1.1
-generated: "2022-06-06T01:38:46.745493958Z"
+generated: "2022-06-06T02:38:40.009646582Z"
