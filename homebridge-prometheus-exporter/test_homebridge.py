@@ -1,10 +1,33 @@
+from datetime import datetime
+from uuid import uuid4
+
 import pytest
 import responses
-from datetime import datetime
 from freezegun import freeze_time
-
-
 from homebridge import HomeBridge
+
+
+def generate_accessory(service_name, service_type, values):
+    return {
+        "serviceName": service_name,
+        "type": service_type,
+        "uniqueId": str(uuid4()),
+        "values": values,
+    }
+
+
+def temp_sensor(name):
+    return generate_accessory(name, "TemperatureSensor", {"CurrentTemperature": 10.0})
+
+
+def humid_sensor(name):
+    return generate_accessory(name, "HumiditySensor", {"CurrentRelativeHumidity": 50})
+
+
+DEFAULT_ACCESSORIES = [
+    temp_sensor("temp sensor 1"),
+    humid_sensor("humid sensor 1"),
+]
 
 
 @pytest.fixture
@@ -52,7 +75,14 @@ def test_api(mocked_responses):
         json={"access_token": "abc123", "expires_in": 100},
         status=201,
     )
-    mocked_responses.get("http://localhost:8080/api/accessories", status=200, json={})
+    mocked_responses.get(
+        "http://localhost:8080/api/accessories", status=200, json=DEFAULT_ACCESSORIES
+    )
     hb._auth()
     accessories = hb.get_accessories()
-    assert accessories == {}
+    assert len(accessories) == 2
+    for accessory in accessories:
+        assert "serviceName" in accessory
+        assert "type" in accessory
+        assert "uniqueId" in accessory
+        assert "values" in accessory

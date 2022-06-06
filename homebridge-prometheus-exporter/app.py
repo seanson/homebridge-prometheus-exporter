@@ -1,13 +1,12 @@
+import logging
 import os
 import sys
-import logging
 
 from flask import Flask
 from flask_apscheduler import APScheduler
+from homebridge import HomeBridge
 from prometheus_client import Gauge
 from prometheus_flask_exporter import PrometheusMetrics
-
-from homebridge import HomeBridge
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)

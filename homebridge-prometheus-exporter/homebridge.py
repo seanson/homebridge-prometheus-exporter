@@ -1,7 +1,8 @@
-import requests
 import logging
-
 from datetime import datetime, timedelta
+from uuid import uuid4
+
+import requests
 
 logger = logging.getLogger(__name__)
 
