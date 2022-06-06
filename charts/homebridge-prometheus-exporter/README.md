@@ -9,7 +9,7 @@ $ helm repo add homebridge-prometheus-exporter https://seanson.github.io/homebri
 $ helm install homebridge-prometheus-exporter/homebridge-prometheus-exporter
 ```
 
-![Version: 0.1.9](https://img.shields.io/badge/Version-0.1.9-informational?style=flat-square)
+![Version: 0.1.10](https://img.shields.io/badge/Version-0.1.10-informational?style=flat-square)
 
 ## Values
 
