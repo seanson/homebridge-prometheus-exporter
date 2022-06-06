@@ -2,3 +2,5 @@ __pycache__
 *.tgz
 dist
 .vscode
+.coverage
+

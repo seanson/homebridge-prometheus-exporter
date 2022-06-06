@@ -9,29 +9,32 @@ from prometheus_flask_exporter import PrometheusMetrics
 
 from homebridge import HomeBridge
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
 
 class Config:
     SCHEDULER_API_ENABLED = True
-    USERNAME = os.environ.get("HOMEBRIDGE_USERNAME", "")
-    PASSWORD = os.environ.get("HOMEBRIDGE_PASSWORD", "")
-    URL = os.environ.get("HOMEBRIDGE_URL", "")
+    HOMEBRIDGE_USERNAME = os.environ.get("HOMEBRIDGE_USERNAME", "")
+    HOMEBRIDGE_PASSWORD = os.environ.get("HOMEBRIDGE_PASSWORD", "")
+    HOMEBRIDGE_URL = os.environ.get("HOMEBRIDGE_URL", "")
+    SCHEDULE_MINUTES = int(os.environ.get("SCHEDULE_MINUTES", "5"))
+    SCHEDULE_MISFIRE_GRACE_SECONDS = int(
+        os.environ.get("SCHEDULE_MISFIRE_GRACE_SECONDS", "900")
+    )
 
 
-if Config.USERNAME == "":
-    print("HOMEBRIDGE_USERNAME must be set!")
-    sys.exit(1)
+REQUIRED_ENV_VARS = ["HOMEBRIDGE_USERNAME", "HOMEBRIDGE_PASSWORD", "HOMEBRIDGE_URL"]
 
-if Config.PASSWORD == "":
-    print("HOMEBRIDGE_PASSWORD must be set!")
-    sys.exit(1)
+for item in REQUIRED_ENV_VARS:
+    if getattr(Config, item) == "":
+        logger.error(f"{item} must be set!")
+        sys.exit(1)
 
-if Config.URL == "":
-    print("HOMEBRIDGE_URL must be set!")
-    sys.exit(1)
+homebridge = HomeBridge(
+    Config.HOMEBRIDGE_URL, Config.HOMEBRIDGE_USERNAME, Config.HOMEBRIDGE_PASSWORD
+)
 
-homebridge = HomeBridge(Config.URL, Config.USERNAME, Config.PASSWORD)
-
-logger = logging.getLogger(__name__)
 app = Flask(__name__)
 app.config.from_object(Config())
 
@@ -52,9 +55,14 @@ scheduler.init_app(app)
 scheduler.start()
 
 
-@scheduler.task("interval", id="fetch_accessories", minutes=30, misfire_grace_time=900)
+@scheduler.task(
+    "interval",
+    id="fetch_accessories",
+    minutes=Config.SCHEDULE_MINUTES,
+    misfire_grace_time=Config.SCHEDULE_MISFIRE_GRACE_SECONDS,
+)
 def fetch_accessories():
-    logger.info("Fetching accessories data from %s", Config.URL)
+    logger.info("Fetching accessories data from %s", Config.HOMEBRIDGE_URL)
     results = homebridge.get_accessories()
 
     for result in results:
