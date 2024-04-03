@@ -64,7 +64,7 @@ jobs:
           pytest --cov .
 
       - name: Helm Lint and Package
-        uses: WyriHaximus/github-action-helm3@v3
+        uses: WyriHaximus/github-action-helm3@v4
         with:
           exec: helm lint ./charts/homebridge-prometheus-exporter && helm package ./charts/homebridge-prometheus-exporter
       # Login against a Docker registry except on PR
